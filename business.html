@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparq - ビジネス業務スポット支援サービス｜企業様向け</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A1F3D;
+  --deep-blue: #2B3170;
+  --accent: #FF6B35;
+  --accent-light: #FF8F66;
+  --accent-glow: rgba(255, 107, 53, 0.12);
+  --white: #FFFFFF;
+  --off-white: #F8F9FC;
+  --light-gray: #E8EBF2;
+  --mid-gray: #8892A8;
+  --dark-text: #1A1F3D;
+  --body-text: #3D4460;
+  --green: #38A169;
+  --green-bg: #F0FFF4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--dark-text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  border-radius: 50%;
+  animation: heroFloat 12s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(43, 49, 112, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, 30px); }
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 1.2rem;
+  animation: fadeIn 0.8s ease-out 0.15s both;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--mid-gray);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeIn 0.8s ease-out 0.45s both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 107, 53, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Hero stats */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.stat-unit {
+  font-size: 1rem;
+  color: var(--accent-light);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--mid-gray);
+  margin-top: 0.3rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== COMMON ===== */
+section { padding: 6rem 2rem; }
+
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.section-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--body-text);
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+/* ===== PAIN POINTS ===== */
+.pain {
+  background: var(--off-white);
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.pain-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 2px 16px rgba(26, 31, 61, 0.05);
+  border-left: 4px solid var(--accent);
+  transition: all 0.3s ease;
+}
+
+.pain-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(26, 31, 61, 0.08);
+}
+
+.pain-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.pain-card p {
+  font-size: 0.85rem;
+  color: var(--body-text);
+  line-height: 1.6;
+}
+
+/* ===== SOLUTION ===== */
+.solution { background: var(--white); }
+
+.solution-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.sol-box {
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 180px;
+}
+
+.sol-client { background: var(--off-white); border: 2px solid var(--light-gray); }
+.sol-sparq { background: var(--accent); color: var(--white); }
+.sol-team { background: var(--off-white); border: 2px solid var(--light-gray); }
+
+.sol-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.sol-box p {
+  font-size: 0.8rem;
+  color: var(--body-text);
+}
+
+.sol-sparq p { color: rgba(255,255,255,0.8); }
+
+.sol-arrow {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.sol-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.sol-feature {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.sol-feature-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--accent-glow);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.5rem;
+}
+
+.sol-feature h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.sol-feature p {
+  font-size: 0.85rem;
+  color: var(--body-text);
+  line-height: 1.5;
+}
+
+/* ===== SERVICES ===== */
+.services {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.services .section-desc { color: var(--mid-gray); }
+
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.srv-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.srv-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-3px);
+}
+
+.srv-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.srv-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.srv-card p {
+  font-size: 0.85rem;
+  color: var(--mid-gray);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.srv-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.srv-price small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--mid-gray);
+}
+
+/* ===== COMPARISON ===== */
+.comparison { background: var(--off-white); }
+
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(26, 31, 61, 0.06);
+}
+
+.comp-table th, .comp-table td {
+  padding: 1rem 1.2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.comp-table thead th {
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.comp-table thead th.sparq-col {
+  background: var(--accent);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+}
+
+.comp-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.comp-table .sparq-val {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.comp-save {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.comp-note {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--mid-gray);
+}
+
+/* ===== FLOW ===== */
+.flow { background: var(--white); }
+
+.flow-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.flow-timeline::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: var(--light-gray);
+}
+
+.flow-step {
+  text-align: center;
+  flex: 1;
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.flow-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--navy);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1rem;
+}
+
+.flow-step:nth-child(n+4) .flow-num { background: var(--accent); }
+
+.flow-step h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.flow-step p {
+  font-size: 0.75rem;
+  color: var(--body-text);
+  line-height: 1.5;
+}
+
+.flow-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 100px;
+}
+
+/* ===== CASE ===== */
+.case-section {
+  background: var(--deep-blue);
+  color: var(--white);
+}
+
+.case-section .section-desc { color: var(--mid-gray); }
+
+.case-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.case-info h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.case-meta {
+  font-size: 0.85rem;
+  color: var(--mid-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.case-results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.case-result {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+}
+
+.case-result-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.case-result-label {
+  font-size: 0.75rem;
+  color: var(--mid-gray);
+  margin-top: 0.2rem;
+}
+
+.case-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.case-quote blockquote {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.9;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5rem;
+}
+
+.case-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--mid-gray);
+  font-style: normal;
+}
+
+/* ===== CTA ===== */
+.cta {
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  border-radius: 50%;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.cta h2 {
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 0.95rem;
+  color: var(--mid-gray);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-note {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--mid-gray);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #12152D;
+  color: var(--white);
+  padding: 2.5rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--mid-gray);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+.footer-copy {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: rgba(136, 146, 168, 0.5);
+  text-align: center;
+}
+
+/* ===== BONUS SECTIONS ===== */
+.bonus { background: var(--off-white); }
+.bonus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.bonus-card { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 24px rgba(26,31,61,.06); }
+.bonus-card .bonus-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.bonus-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark-text); margin-bottom: 0.6rem; }
+.bonus-card p { font-size: 0.9rem; color: var(--body-text); line-height: 1.7; }
+.bonus-card .bonus-tag { display: inline-block; margin-top: 0.8rem; padding: 0.25rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; background: var(--green); color: var(--white); }
+.bonus-note { margin-top: 1.5rem; font-size: 0.8rem; color: var(--mid-gray); line-height: 1.6; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .bonus-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== RESPONSIVE (existing) ===== */
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .srv-grid { grid-template-columns: 1fr; }
+  .sol-features { grid-template-columns: 1fr; }
+  .flow-timeline { flex-direction: column; gap: 1.5rem; }
+  .flow-timeline::before { display: none; }
+  .case-card { grid-template-columns: 1fr; }
+  .comp-table { font-size: 0.8rem; }
+  .comp-table th, .comp-table td { padding: 0.7rem 0.5rem; }
+  section { padding: 4rem 1.5rem; }
+  .footer-inner { justify-content: center; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+
+/* ===== SCROLL ANIMATION ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.7s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">FOR BUSINESS</span>
+      <h1>
+        細かい仕事、<br>
+        <span>学生に任せてみませんか？</span>
+      </h1>
+      <p class="hero-sub">
+        名刺配り、リスト作成、リサーチ、データ入力、SNS運用——<br>
+        研修済みの学生アシスタントを、最短3営業日でアサイン。<br>
+        派遣より柔軟に、BPOより手軽に。月額15万円から。
+      </p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary">
+          お問い合わせ
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn-secondary">サービス詳細を見る</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">300<span class="stat-unit">+</span></div>
+        <div class="stat-label">登録人材</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3<span class="stat-unit">日</span></div>
+        <div class="stat-label">最短アサイン</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">96<span class="stat-unit">%</span></div>
+        <div class="stat-label">クライアント満足度</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40<span class="stat-unit">%</span></div>
+        <div class="stat-label">コスト削減実績</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAIN ===== -->
+<section class="pain">
+  <div class="section-inner">
+    <div class="section-label reveal">Challenge</div>
+    <h2 class="section-title reveal">こんなお悩みはありませんか？</h2>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <h3>アポインターが慢性的に足りない</h3>
+        <p>案件は増えているのに、架電できる人材の採用が追いつかない。稼働率が上がらず機会損失が発生している。</p>
+      </div>
+      <div class="pain-card reveal">
+        <h3>SDRを正社員で雇うとコストが合わない</h3>
+        <p>インサイドセールス1名の採用コストは年間400〜600万円。まずは少人数でテスト的に始めたい。</p>
+      </div>
+      <div class="pain-card reveal">
+        <h3>展示会の度にスタッフ手配で消耗する</h3>
+        <p>毎回イチから募集・教育・管理。終わった瞬間に次の手配が始まる。本業に集中できない。</p>
+      </div>
+      <div class="pain-card reveal">
+        <h3>営業リスト作成・CRM入力に時間を取られる</h3>
+        <p>営業の本質はクロージングなのに、データ入力やリスト整備に社員のリソースが割かれている。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION ===== -->
+<section class="solution">
+  <div class="section-inner">
+    <div class="section-label reveal">Solution</div>
+    <h2 class="section-title reveal">Sparqが解決します</h2>
+    <p class="section-desc reveal">
+      研修済みの学生アシスタントを、業務委託契約でスポット提供。<br>
+      品質管理はSparqが担うので、御社は成果だけを受け取れます。
+    </p>
+    <div class="solution-diagram reveal">
+      <div class="sol-box sol-client">
+        <h3>御社</h3>
+        <p>業務を依頼</p>
+      </div>
+      <div class="sol-arrow">→</div>
+      <div class="sol-box sol-sparq">
+        <h3 style="font-family:'Outfit',sans-serif;">Sparq</h3>
+        <p>業務委託契約</p>
+      </div>
+      <div class="sol-arrow">→</div>
+      <div class="sol-box sol-team">
+        <h3>学生チーム</h3>
+        <p>業務遂行</p>
+      </div>
+    </div>
+    <div class="sol-features">
+      <div class="sol-feature reveal">
+        <div class="sol-feature-icon">&#x1F6E1;&#xFE0F;</div>
+        <h3>PM付きプラン</h3>
+        <p>専任PMが品質をディレクション。月2回の定期レビューで進捗・品質を管理します。</p>
+      </div>
+      <div class="sol-feature reveal">
+        <div class="sol-feature-icon">&#x26A1;</div>
+        <h3>最短3日アサイン</h3>
+        <p>登録人材から最適なメンバーを選定。急な案件にも柔軟に対応。</p>
+      </div>
+      <div class="sol-feature reveal">
+        <div class="sol-feature-icon">&#x1F4B8;</div>
+        <h3>コスト削減</h3>
+        <p>派遣・BPO比で平均20〜40%のコスト削減。パッケージ割引あり。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label reveal">Services</div>
+    <h2 class="section-title reveal">対応業務</h2>
+    <p class="section-desc reveal">テレアポ・営業代行を中心に、展示会支援からAI活用まで幅広く対応します。</p>
+    <div class="srv-grid">
+      <div class="srv-card reveal">
+        <div class="srv-icon">&#x1F4DE;</div>
+        <h3>テレアポ・営業代行</h3>
+        <p>新規開拓の架電代行・アポイント獲得。架電スクリプト研修済み。営業リスト作成もセットで対応可能。</p>
+        <div class="srv-price">¥2,500〜4,000<small>/時</small></div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-icon">&#x1F4CB;</div>
+        <h3>営業リスト作成・CRM入力</h3>
+        <p>ターゲット企業のリストアップ、Salesforce/HubSpot等へのデータ入力・クレンジング。</p>
+        <div class="srv-price">¥2,000〜2,500<small>/時</small></div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-icon">&#x1F3AA;</div>
+        <h3>展示会トータル支援</h3>
+        <p>名刺獲得・ブース運営・事前リスト作成・事後フォローまでワンストップで対応。</p>
+        <div class="srv-price">¥2,000〜3,500<small>/時</small></div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-icon">&#x1F50D;</div>
+        <h3>競合調査・市場リサーチ</h3>
+        <p>一次情報の収集・分析。競合ベンチマーク・業界動向レポート。</p>
+        <div class="srv-price">¥3,000<small>/時〜</small></div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-icon">&#x1F4F1;</div>
+        <h3>SNS運用・コンテンツ制作</h3>
+        <p>SNS投稿代行・記事ライティング・メルマガ運用支援。</p>
+        <div class="srv-price">¥3,500<small>/時〜</small></div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-icon">&#x1F916;</div>
+        <h3>AI活用支援</h3>
+        <p>ChatGPT・Claude・Notion AIの業務導入支援。業務自動化の設計・実装。</p>
+        <div class="srv-price">¥5,000〜8,000<small>/時</small></div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:var(--mid-gray);" class="reveal">※ 専門的な技術判断を要する業務、法的判断を伴う業務、個人情報の直接的な取り扱い等、学生では対応が難しい業務については事前にご説明します。詳細はヒアリング時にご相談ください。</p>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section class="comparison">
+  <div class="section-inner">
+    <div class="section-label reveal">Price Comparison</div>
+    <h2 class="section-title reveal">他社サービスとの料金比較</h2>
+    <p class="section-desc reveal">同等業務を外注した場合の一般的な市場価格との比較です。</p>
+    <table class="comp-table reveal">
+      <thead>
+        <tr>
+          <th>業務</th>
+          <th class="sparq-col">Sparq</th>
+          <th>人材派遣</th>
+          <th>営業代行/BPO</th>
+          <th>削減効果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>テレアポ・架電</td>
+          <td class="sparq-val">¥3,500</td>
+          <td>¥3,500〜5,000</td>
+          <td>¥4,000〜6,000</td>
+          <td class="comp-save">最大42%OFF</td>
+        </tr>
+        <tr>
+          <td>名刺獲得・声がけ</td>
+          <td class="sparq-val">¥3,000</td>
+          <td>—</td>
+          <td>¥3,750〜6,250</td>
+          <td class="comp-save">最大52%OFF</td>
+        </tr>
+        <tr>
+          <td>ブース接客・説明</td>
+          <td class="sparq-val">¥3,500</td>
+          <td>¥3,000〜4,500</td>
+          <td>—</td>
+          <td class="comp-save">最大30%OFF</td>
+        </tr>
+        <tr>
+          <td>リスト作成・リサーチ</td>
+          <td class="sparq-val">¥2,500</td>
+          <td>¥2,500〜3,000</td>
+          <td>—</td>
+          <td class="comp-save">最大17%OFF</td>
+        </tr>
+        <tr>
+          <td>フォローコール</td>
+          <td class="sparq-val">¥3,000</td>
+          <td>¥3,500〜5,000</td>
+          <td>¥4,000〜6,000</td>
+          <td class="comp-save">最大50%OFF</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="comp-note reveal">※ 他社価格は一般的な市場相場に基づく参考値です。表示は全て税別時間単価。</p>
+  </div>
+</section>
+
+<!-- ===== FLOW ===== -->
+<section class="flow">
+  <div class="section-inner">
+    <div class="section-label reveal">Flow</div>
+    <h2 class="section-title reveal">ご利用の流れ</h2>
+    <p class="section-desc reveal">初回のお打ち合わせから最短1週間で業務を開始できます。</p>
+    <div class="flow-timeline reveal">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <h3>ヒアリング</h3>
+        <p>業務内容・目標・ご要望を伺います</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <h3>ご提案</h3>
+        <p>最適な人数・業務範囲・料金をご提示</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <h3>ご契約</h3>
+        <p>業務委託契約の締結・NDA対応可</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <h3>アサイン</h3>
+        <p>最適な人材を選定・事前研修</p>
+        <span class="flow-badge">最短3営業日</span>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <h3>業務遂行</h3>
+        <p>PM管理のもと業務を遂行</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">06</div>
+        <h3>納品</h3>
+        <p>成果物の納品・ご請求書発行</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASE ===== -->
+<section class="case-section">
+  <div class="section-inner">
+    <div class="section-label reveal">Case Study</div>
+    <h2 class="section-title reveal">導入事例</h2>
+    <p class="section-desc reveal">実際にSparqの学生チームが担当した業務事例をご紹介します。</p>
+
+    <!-- Case 1: 展示会 名刺配り・リストアップ -->
+    <div class="case-card reveal">
+      <div class="case-info">
+        <h3>IT企業A社｜展示会での名刺配り・リストアップ</h3>
+        <p class="case-meta">
+          業種：BtoB向けSaaSプロダクト提供（社員50名）<br>
+          課題：展示会でのブース運営は自社で対応できるが、来場者への声がけ・名刺交換の「頭数」が足りず、名刺獲得数に毎回課題を感じていた。<br>
+          対応：学生3名を3日間アサイン。来場者への声がけ・名刺交換・見込み度合いのヒアリングを担当。獲得名刺は当日中にスプレッドシートへリストアップし、見込みランク付きで納品。
+        </p>
+        <div class="case-results">
+          <div class="case-result">
+            <div class="case-result-num">320枚</div>
+            <div class="case-result-label">名刺獲得数（3日間）</div>
+          </div>
+          <div class="case-result">
+            <div class="case-result-num">当日</div>
+            <div class="case-result-label">リスト納品</div>
+          </div>
+          <div class="case-result">
+            <div class="case-result-num">A/B/C</div>
+            <div class="case-result-label">見込みランク分類済み</div>
+          </div>
+          <div class="case-result">
+            <div class="case-result-num">8件</div>
+            <div class="case-result-label">後日商談化</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-quote">
+        <blockquote>
+          名刺を配るだけでなく、見込み度合いまでヒアリングしてランク分けしてくれたのが助かりました。リストが当日中に届くので、翌日からすぐにフォロー営業に入れました。
+        </blockquote>
+        <cite>— A社 マーケティング担当</cite>
+      </div>
+    </div>
+
+    <!-- Case 2: リサーチ・データ整備 -->
+    <div class="case-card reveal" style="margin-top: 2rem;">
+      <div class="case-info">
+        <h3>コンサルティング会社C社｜市場リサーチ・資料作成</h3>
+        <p class="case-meta">
+          業種：経営コンサルティング（社員15名）<br>
+          課題：クライアント向け提案資料の作成に、代表とコンサルタントの時間が割かれすぎていた。市場データの収集・整理を任せられる人材がほしかった。<br>
+          対応：学生2名を月次契約でアサイン。業界動向のリサーチ、競合企業の情報収集、データのスプレッドシート整理、提案資料のフォーマット作成を担当。
+        </p>
+        <div class="case-results">
+          <div class="case-result">
+            <div class="case-result-num">月40h</div>
+            <div class="case-result-label">代表の時間を削減</div>
+          </div>
+          <div class="case-result">
+            <div class="case-result-num">2名</div>
+            <div class="case-result-label">月次アサイン</div>
+          </div>
+          <div class="case-result">
+            <div class="case-result-num">4ヶ月</div>
+            <div class="case-result-label">継続利用中</div>
+          </div>
+          <div class="case-result">
+            <div class="case-result-num">35%</div>
+            <div class="case-result-label">資料作成コスト削減</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-quote">
+        <blockquote>
+          うちの規模だと正社員を雇うほどではないけど、リサーチや資料整理に毎月かなりの時間を使っていました。学生がやってくれることで、本来のコンサル業務に集中できるようになりました。
+        </blockquote>
+        <cite>— C社 代表取締役</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BONUS: 採用＋特典 ===== -->
+<section class="bonus">
+  <div class="section-inner">
+    <div class="section-label reveal">Bonus</div>
+    <h2 class="section-title reveal">業務委託だけじゃない、Sparqの付加価値</h2>
+    <div class="bonus-grid">
+      <div class="bonus-card reveal">
+        <span class="bonus-icon">🎯</span>
+        <h3>採用チャネルとしても使える</h3>
+        <p>アサインされた学生に直接声がけが可能。実際の業務パフォーマンスを見た上で採用判断ができるので、ミスマッチのリスクを大幅に削減できます。「働きぶりを見てからスカウト」という、最も確実な採用手法です。</p>
+        <span class="bonus-tag">採用コスト削減</span>
+      </div>
+      <div class="bonus-card reveal">
+        <span class="bonus-icon">📣</span>
+        <h3>SNS・企業広報の支援（無料特典）</h3>
+        <p>Sparqの公式Note・Instagramアカウントで、御社の取り組みや働く環境をインタビュー記事として発信します。企業広報・採用ブランディングとしてもご活用いただけます。</p>
+        <span class="bonus-tag">無料</span>
+      </div>
+    </div>
+    <p class="bonus-note reveal">※ SNS広報支援は導入企業様への無料特典として提供しています。インタビュー記事の掲載はご希望の企業様のみ対応します。</p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <div class="cta-logo reveal">Sparq</div>
+    <h2 class="reveal">まずはお気軽にご相談ください</h2>
+    <p class="reveal">
+      業務の内容・規模を伺った上で、最適なプランをご提案します。<br>
+      お見積りは無料です。
+    </p>
+    <div class="cta-actions reveal">
+      <a href="mailto:info@locare.co.jp" class="btn-primary">
+        お問い合わせ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="btn-secondary">資料ダウンロード</a>
+    </div>
+    <p class="cta-note reveal">
+      Locare Inc.｜info@locare.co.jp｜https://locare.co.jp
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sparq</div>
+    <div class="footer-links">
+      <a href="#">運営会社</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">学生の方はこちら</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Locare Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
