@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparq - 学生向けビジネス実践プラットフォーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A1F3D;
+  --deep: #2B3170;
+  --acc: #FF6B35;
+  --accL: #FF8F66;
+  --accGlow: rgba(255,107,53,0.12);
+  --wh: #FFFFFF;
+  --off: #F8F9FC;
+  --lgray: #E8EBF2;
+  --mgray: #8892A8;
+  --dark: #1A1F3D;
+  --body: #3D4460;
+  --green: #38A169;
+  --greenBg: #E6F9EE;
+  --t1: #3B82F6;
+  --t2: #F59E0B;
+  --t3: #EF4444;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--wh);background:var(--navy);overflow-x:hidden}
+
+/* === HERO === */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;padding:2rem;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-20%;width:700px;height:700px;background:radial-gradient(circle,var(--accGlow) 0%,transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite}
+.hero::after{content:'';position:absolute;bottom:-20%;left:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(43,49,112,0.6) 0%,transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-badge{display:inline-block;padding:.4rem 1.2rem;border:1px solid var(--acc);border-radius:100px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;color:var(--acc);letter-spacing:.1em;margin-bottom:2rem;animation:fadeUp .8s ease-out}
+.hero-logo{font-family:'Outfit',sans-serif;font-size:clamp(4rem,10vw,7rem);font-weight:800;color:var(--acc);line-height:1;margin-bottom:1.5rem;animation:fadeUp .8s ease-out .15s both}
+.hero-tagline{font-size:clamp(1.3rem,3.5vw,2rem);font-weight:700;margin-bottom:1rem;animation:fadeUp .8s ease-out .3s both}
+.hero-sub{font-size:1rem;font-weight:300;color:var(--mgray);line-height:1.8;margin-bottom:2.5rem;animation:fadeUp .8s ease-out .45s both}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2.5rem;background:var(--acc);color:var(--wh);font-size:1.05rem;font-weight:700;text-decoration:none;border-radius:100px;transition:all .3s ease;animation:fadeUp .8s ease-out .6s both}
+.hero-cta:hover{background:var(--accL);transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,107,53,.3)}
+.hero-cta svg{width:18px;height:18px;transition:transform .3s ease}
+.hero-cta:hover svg{transform:translateX(4px)}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:fadeUp .8s ease-out .9s both}
+.scroll-hint span{display:block;width:2px;height:40px;background:linear-gradient(to bottom,var(--acc),transparent);margin:0 auto;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* === COMMON === */
+section{padding:6rem 2rem}
+.inner{max-width:1100px;margin:0 auto}
+.label{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;color:var(--acc);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem}
+.title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;margin-bottom:1rem;line-height:1.4}
+.desc{font-size:1rem;font-weight:300;color:var(--mgray);line-height:1.8;max-width:640px}
+.desc-dark{color:var(--body)}
+
+/* === COMPARISON === */
+.compare{background:var(--navy)}
+.compare-table{width:100%;border-collapse:collapse;margin-top:2.5rem;overflow:hidden;border-radius:12px}
+.compare-table th,.compare-table td{padding:.9rem 1rem;text-align:center;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.compare-table thead th{background:var(--deep);color:var(--wh);font-weight:600;font-size:.85rem}
+.compare-table thead th.sparq-col{background:var(--acc);font-family:'Outfit',sans-serif;font-size:1rem}
+.compare-table td{background:rgba(255,255,255,.03);color:var(--mgray)}
+.compare-table td:first-child{color:var(--wh);font-weight:500;text-align:left}
+.compare-table .sv{color:var(--acc);font-weight:700;font-family:'Outfit',sans-serif}
+
+/* === JOBS === */
+.jobs{background:var(--off);color:var(--dark)}
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-top:2.5rem}
+.job-card{background:var(--wh);border-radius:14px;padding:1.5rem;box-shadow:0 3px 18px rgba(26,31,61,.05);transition:all .3s ease;text-align:center;border-top:4px solid var(--lgray)}
+.job-card:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(26,31,61,.08)}
+.job-card.t1{border-top-color:var(--t1)}
+.job-card.t2{border-top-color:var(--t2)}
+.job-card.t3{border-top-color:var(--t3)}
+.job-emoji{font-size:2rem;margin-bottom:.8rem;display:block}
+.job-card h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem;color:var(--dark)}
+.job-card p{font-size:.8rem;color:var(--body);line-height:1.5;margin-bottom:.8rem}
+.tier-badge{display:inline-block;padding:.2rem .7rem;border-radius:100px;font-size:.7rem;font-weight:700;color:var(--wh)}
+.tier-badge.t1{background:var(--t1)}
+.tier-badge.t2{background:var(--t2)}
+.tier-badge.t3{background:var(--t3)}
+.job-pay{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;color:var(--acc);margin-top:.4rem}
+
+/* === CAREER SYSTEM === */
+.career{background:var(--navy)}
+.career-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.5rem}
+.career-card{background:var(--deep);border-radius:14px;padding:1.5rem;text-align:center;position:relative}
+.career-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--acc);margin-bottom:.5rem}
+.career-card h3{font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.career-card .sub{font-size:.8rem;color:var(--acc);margin-bottom:.8rem}
+.career-card p{font-size:.8rem;color:var(--mgray);line-height:1.6}
+
+/* === WILL CAN DO === */
+.wcd{background:var(--off);color:var(--dark)}
+.wcd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.wcd-card{background:var(--wh);border-radius:14px;overflow:hidden;box-shadow:0 3px 18px rgba(26,31,61,.05)}
+.wcd-header{padding:1rem;text-align:center;color:var(--wh)}
+.wcd-header.will{background:var(--acc)}
+.wcd-header.can{background:var(--navy)}
+.wcd-header.do{background:var(--green)}
+.wcd-header h3{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800}
+.wcd-header p{font-size:.8rem;opacity:.8;margin-top:.2rem}
+.wcd-body{padding:1.5rem}
+.wcd-body h4{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
+.wcd-body p{font-size:.85rem;color:var(--body);line-height:1.6;margin-bottom:1rem}
+.wcd-example{background:var(--off);border-radius:8px;padding:.8rem 1rem}
+.wcd-example .ex-label{font-size:.7rem;font-weight:700;color:var(--mgray);margin-bottom:.3rem}
+.wcd-example .ex-text{font-size:.85rem;color:var(--acc);font-style:italic;line-height:1.5}
+
+/* === SCORE === */
+.score{background:var(--off);color:var(--dark)}
+.score-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.score-items{display:flex;flex-direction:column;gap:.8rem}
+.score-item{background:var(--wh);border-radius:10px;padding:1rem 1.2rem;box-shadow:0 2px 12px rgba(26,31,61,.04);display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center}
+.score-bar{width:4px;height:100%;min-height:36px;border-radius:2px}
+.score-bar.stance{background:var(--acc)}
+.score-bar.skill{background:var(--navy)}
+.score-item h4{font-size:.95rem;font-weight:700;color:var(--dark);margin:0}
+.score-item p{font-size:.8rem;color:var(--body);margin:0}
+.score-wt{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--acc)}
+.score-tag{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.65rem;font-weight:700;color:var(--wh)}
+.score-tag.stance{background:var(--acc)}
+.score-tag.skill{background:var(--navy)}
+.score-message{background:var(--navy);border-radius:14px;padding:2.5rem;text-align:center;color:var(--wh)}
+.score-message .big{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;line-height:1.3;margin-bottom:1.5rem}
+.score-message .big span{color:var(--acc)}
+.score-message .quote{font-size:1rem;color:var(--mgray);line-height:1.8;font-style:italic}
+.score-message .quote strong{color:var(--wh);font-style:normal}
+
+/* === TIER === */
+.tier-section{background:var(--navy)}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.tier-card{border-radius:14px;overflow:hidden;background:var(--deep)}
+.tier-head{padding:1.2rem;text-align:center;color:var(--wh)}
+.tier-head.t1-bg{background:var(--t1)}
+.tier-head.t2-bg{background:var(--t2)}
+.tier-head.t3-bg{background:var(--t3)}
+.tier-head h3{font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800}
+.tier-pay{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700}
+.tier-body{padding:1.5rem}
+.tier-body h4{font-size:.8rem;font-weight:700;color:var(--mgray);margin-bottom:.5rem;letter-spacing:.05em}
+.tier-body p{font-size:.9rem;color:var(--wh);line-height:1.7;margin-bottom:1rem}
+.tier-body p:last-child{margin-bottom:0}
+.tier-key{background:var(--acc);color:var(--wh);padding:.8rem;border-radius:10px;text-align:center;margin-top:2rem;font-size:.95rem;font-weight:700}
+
+/* === PDCA === */
+.pdca{background:var(--off);color:var(--dark)}
+.pdca-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.5rem}
+.pdca-card{background:var(--wh);border-radius:14px;padding:1.5rem;box-shadow:0 3px 18px rgba(26,31,61,.05);text-align:center}
+.pdca-period{display:inline-block;padding:.3rem .8rem;background:var(--acc);color:var(--wh);border-radius:100px;font-size:.75rem;font-weight:700;margin-bottom:1rem}
+.pdca-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.pdca-card h3{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
+.pdca-card p{font-size:.8rem;color:var(--body);line-height:1.6}
+.daily-format{background:var(--off);color:var(--dark);margin-top:2.5rem;border-radius:14px;padding:2rem;max-width:700px}
+.daily-format h3{font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--dark)}
+.daily-item{padding:.6rem 0;border-bottom:1px solid var(--lgray);display:flex;gap:.8rem;align-items:flex-start}
+.daily-item:last-child{border-bottom:none}
+.daily-num{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:800;color:var(--acc);min-width:24px}
+.daily-item h4{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.1rem}
+.daily-item p{font-size:.8rem;color:var(--body)}
+
+/* === VOICES === */
+.voices{background:var(--deep);color:var(--wh)}
+.voice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem}
+.voice-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.8rem;position:relative}
+.voice-card::before{content:'"';font-family:'Outfit',sans-serif;font-size:3.5rem;font-weight:800;color:var(--acc);opacity:.3;position:absolute;top:.3rem;left:1rem;line-height:1}
+.voice-text{font-size:.9rem;font-weight:300;line-height:1.8;padding-top:.8rem;margin-bottom:1.2rem}
+.voice-meta{display:flex;align-items:center;gap:.8rem}
+.voice-avatar{width:40px;height:40px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem}
+.voice-info{font-size:.8rem;color:var(--mgray);line-height:1.4}
+.voice-info strong{color:var(--wh);font-weight:500;display:block}
+.voice-score{font-size:.8rem;color:var(--acc);font-weight:600;margin-top:.2rem}
+
+/* === FAQ === */
+.faq{background:var(--off);color:var(--dark)}
+.faq-list{margin-top:2rem;max-width:760px}
+.faq-item{border-bottom:1px solid var(--lgray);padding:1.3rem 0}
+.faq-q{font-size:.95rem;font-weight:700;display:flex;align-items:flex-start;gap:.8rem}
+.faq-q::before{content:'Q';font-family:'Outfit',sans-serif;font-weight:800;color:var(--acc);font-size:1rem;flex-shrink:0}
+.faq-a{font-size:.85rem;color:var(--body);line-height:1.7;margin-top:.6rem;padding-left:1.7rem}
+
+/* === CTA === */
+.cta{background:var(--navy);text-align:center;padding:6rem 2rem;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,var(--accGlow) 0%,transparent 70%);border-radius:50%}
+.cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.cta-logo{font-family:'Outfit',sans-serif;font-size:3rem;font-weight:800;color:var(--acc);margin-bottom:1rem}
+.cta h2{font-size:clamp(1.4rem,4vw,1.8rem);font-weight:700;margin-bottom:1rem}
+.cta p{font-size:.95rem;color:var(--mgray);line-height:1.8;margin-bottom:2rem}
+.cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2.5rem;background:var(--acc);color:var(--wh);font-size:1.05rem;font-weight:700;text-decoration:none;border-radius:100px;transition:all .3s ease}
+.cta-btn:hover{background:var(--accL);transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,107,53,.3)}
+.cta-note{margin-top:1rem;font-size:.8rem;color:var(--mgray)}
+
+/* === FOOTER === */
+footer{background:#12152D;padding:2.5rem 2rem;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;color:var(--acc)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.8rem;color:var(--mgray);text-decoration:none;transition:color .3s ease}
+.footer-links a:hover{color:var(--acc)}
+.footer-copy{width:100%;margin-top:1rem;font-size:.75rem;color:rgba(136,146,168,.5)}
+
+/* === RESPONSIVE === */
+@media(max-width:768px){
+  section{padding:4rem 1.5rem}
+  .career-flow,.pdca-timeline{grid-template-columns:repeat(2,1fr)}
+  .wcd-grid,.tier-grid{grid-template-columns:1fr}
+  .score-layout{grid-template-columns:1fr}
+  .voice-grid{grid-template-columns:1fr}
+  .compare-table{font-size:.8rem}
+  .compare-table th,.compare-table td{padding:.6rem .4rem}
+  .footer-inner{justify-content:center;text-align:center}
+  .footer-links{justify-content:center}
+}
+@media(max-width:480px){
+  .jobs-grid{grid-template-columns:1fr}
+  .career-flow,.pdca-timeline{grid-template-columns:1fr}
+}
+
+.reveal{opacity:0;transform:translateY(24px);transition:all .7s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">FOR STUDENTS</span>
+    <div class="hero-logo">Sparq</div>
+    <h1 class="hero-tagline">あなたの中の、<br>まだ見ぬ火花を。</h1>
+    <p class="hero-sub">バイトでは得られないビジネスの現場経験を。<br>Sparqは、学生がリアルなビジネス業務に挑戦し、<br>成長を仕組みで支援するプラットフォームです。</p>
+    <a href="#apply" class="hero-cta">エントリーする <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare">
+  <div class="inner">
+    <div class="label reveal">Why Sparq?</div>
+    <h2 class="title reveal">普通のバイトとの違い</h2>
+    <table class="compare-table reveal">
+      <thead><tr><th></th><th class="sparq-col">Sparq</th><th>一般的なアルバイト</th><th>長期インターン</th></tr></thead>
+      <tbody>
+        <tr><td>時給</td><td class="sv">¥1,200〜5,000</td><td>¥1,100〜1,500</td><td>¥1,100〜1,800</td></tr>
+        <tr><td>業務内容</td><td class="sv">展示会・企業対応・調査・AI支援</td><td>飲食・軽作業・コンビニ等</td><td>社内業務の補助（雑務多め）</td></tr>
+        <tr><td>スケジュール</td><td class="sv">週10h〜 柔軟</td><td>シフト制（融通が利かない）</td><td>週3日〜 固定</td></tr>
+        <tr><td>キャリア支援</td><td class="sv">目標設定・PDCA・評価・Tier制度</td><td>なし</td><td>企業による（ばらつき大）</td></tr>
+        <tr><td>就活への<br>インパクト</td><td class="sv">企業評価つきの実績ポートフォリオ</td><td>ほぼなし</td><td>あるが語りにくい</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- JOBS -->
+<section class="jobs">
+  <div class="inner">
+    <div class="label reveal">What You Do</div>
+    <h2 class="title reveal">挑戦できる業務</h2>
+    <p class="desc desc-dark reveal">スキルと意欲に合わせて、3つのTierから業務にチャレンジ。経験を積むほどTierが上がり、より高度な業務と高い報酬にアクセスできます。</p>
+    <div class="jobs-grid">
+      <div class="job-card t2 reveal"><span class="job-emoji">🎪</span><h3>展示会スタッフ</h3><p>ブースでの声がけ、名刺交換、来場者への商品説明</p><span class="tier-badge t2">Tier 2</span><div class="job-pay">¥1,800〜2,500/h</div></div>
+      <div class="job-card t2 reveal"><span class="job-emoji">📱</span><h3>SNS運用</h3><p>企業のSNS投稿代行、コンテンツ企画、分析レポート</p><span class="tier-badge t2">Tier 2</span><div class="job-pay">¥1,800〜2,500/h</div></div>
+      <div class="job-card t3 reveal"><span class="job-emoji">🤖</span><h3>AI活用支援</h3><p>企業へのAIツール導入支援、業務自動化の設計・実装</p><span class="tier-badge t3">Tier 3</span><div class="job-pay">¥3,000〜5,000/h</div></div>
+      <div class="job-card t1 reveal"><span class="job-emoji">🔍</span><h3>市場リサーチ</h3><p>競合企業の調査、業界動向の情報収集・レポート作成</p><span class="tier-badge t1">Tier 1</span><div class="job-pay">¥1,200〜1,500/h</div></div>
+      <div class="job-card t1 reveal"><span class="job-emoji">📝</span><h3>データ入力・資料作成</h3><p>名刺デジタル化、営業リスト整備、資料フォーマット整理</p><span class="tier-badge t1">Tier 1</span><div class="job-pay">¥1,200〜1,500/h</div></div>
+      <div class="job-card t2 reveal"><span class="job-emoji">💬</span><h3>企業への電話コミュニケーション</h3><p>企業担当者との電話でのヒアリング・アポイント調整・提案サポート</p><span class="tier-badge t2">Tier 2</span><div class="job-pay">¥1,800〜2,500/h</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER SYSTEM OVERVIEW -->
+<section class="career">
+  <div class="inner">
+    <div class="label reveal">Career Support</div>
+    <h2 class="title reveal">Sparqのキャリア支援制度</h2>
+    <p class="desc reveal">Sparqは単なる業務マッチングではありません。あなたの成長を、仕組みで支援します。</p>
+    <div class="career-flow">
+      <div class="career-card reveal"><div class="career-num">01</div><h3>目標設定</h3><div class="sub">Will / Can / Do</div><p>「なりたい自分」から逆算して目標を設定。PMと一緒に言語化します。</p></div>
+      <div class="career-card reveal"><div class="career-num">02</div><h3>PDCA</h3><div class="sub">日報 → 評価 → 1on1</div><p>毎日の振り返りと月次の成長確認で、着実にステップアップ。</p></div>
+      <div class="career-card reveal"><div class="career-num">03</div><h3>Sparqスコア</h3><div class="sub">5項目 × 5点評価</div><p>スタンス重視の評価であなたの成長が数字で見える。</p></div>
+      <div class="career-card reveal"><div class="career-num">04</div><h3>Tier昇格</h3><div class="sub">報酬アップ</div><p>改善行動を重ねればTierが上がり、時給も上がる。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WILL / CAN / DO -->
+<section class="wcd">
+  <div class="inner">
+    <div class="label reveal">Goal Setting</div>
+    <h2 class="title reveal">目標設定：Will / Can / Do</h2>
+    <p class="desc desc-dark reveal">初回面談でPMと一緒に「あなただけの目標」を設定します。</p>
+    <div class="wcd-grid">
+      <div class="wcd-card reveal">
+        <div class="wcd-header will"><h3>Will</h3><p>ありたい姿（3〜6ヶ月後）</p></div>
+        <div class="wcd-body">
+          <h4>自分の内側から出てくる「こうなりたい」を言語化</h4>
+          <p>スキル目標ではなく、なりたい自分像。就活のためではなく、あなた自身のために。</p>
+          <div class="wcd-example"><div class="ex-label">設定例</div><div class="ex-text">「就活で堂々と語れるビジネス経験を積みたい」</div></div>
+        </div>
+      </div>
+      <div class="wcd-card reveal">
+        <div class="wcd-header can"><h3>Can</h3><p>身につけたいスキル・スタンス</p></div>
+        <div class="wcd-body">
+          <h4>Willから逆算して、何ができるようになるかを具体化</h4>
+          <p>スタンス面の目標を意識的に含めます。「スキル」と「向き合い方」の両方。</p>
+          <div class="wcd-example"><div class="ex-label">設定例</div><div class="ex-text">「企業の担当者と電話で物怖じせず、自然な会話ができるようになる」</div></div>
+        </div>
+      </div>
+      <div class="wcd-card reveal">
+        <div class="wcd-header do"><h3>Do</h3><p>今月の具体アクション</p></div>
+        <div class="wcd-body">
+          <h4>毎月更新する、測定可能な行動目標</h4>
+          <p>大きな目標を、今月やる小さなアクションに落とし込みます。</p>
+          <div class="wcd-example"><div class="ex-label">設定例</div><div class="ex-text">「日報の『改善したいこと』欄を毎日必ず1つ書く」</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPARQ SCORE -->
+<section class="score">
+  <div class="inner">
+    <div class="label reveal">Evaluation</div>
+    <h2 class="title reveal">Sparqスコア：成長の見える化</h2>
+    <p class="desc desc-dark reveal">5つの評価項目で、あなたの成長を数値で可視化。スキルよりスタンスを重視します。</p>
+    <div class="score-layout">
+      <div class="score-items reveal">
+        <div class="score-item"><div class="score-bar stance"></div><div><h4>成長意欲</h4><p>学ぼうとしているか</p></div><div class="score-wt">20%</div><span class="score-tag stance">スタンス</span></div>
+        <div class="score-item"><div class="score-bar stance"></div><div><h4>目的意識</h4><p>「なぜ」を理解しているか</p></div><div class="score-wt">15%</div><span class="score-tag stance">スタンス</span></div>
+        <div class="score-item"><div class="score-bar stance"></div><div><h4>改善行動</h4><p>自分で考えて動いているか</p></div><div class="score-wt">20%</div><span class="score-tag stance">スタンス</span></div>
+        <div class="score-item"><div class="score-bar stance"></div><div><h4>コミュニケーション</h4><p>報連相・誠実さ</p></div><div class="score-wt">15%</div><span class="score-tag stance">スタンス</span></div>
+        <div class="score-item"><div class="score-bar skill"></div><div><h4>業務遂行力</h4><p>業務の品質・正確性</p></div><div class="score-wt">30%</div><span class="score-tag skill">スキル</span></div>
+      </div>
+      <div class="score-message reveal">
+        <div class="big"><span>スタンス70%</span><br>スキル30%</div>
+        <div class="quote">「まだうまくできないけど、<br><strong>めちゃくちゃ頑張っている</strong>」<br><br>そんなあなたを、<br>Sparqは正当に評価します。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIER -->
+<section class="tier-section">
+  <div class="inner">
+    <div class="label reveal">Tier System</div>
+    <h2 class="title reveal">頑張りが、報酬に変わる</h2>
+    <p class="desc reveal">Sparqスコアと改善行動の積み重ねでTierが昇格。時給が上がります。</p>
+    <div class="tier-grid">
+      <div class="tier-card reveal">
+        <div class="tier-head t1-bg"><h3>Tier 1</h3><div class="tier-pay">¥1,200〜1,500/h</div></div>
+        <div class="tier-body">
+          <h4>昇格条件</h4><p>研修を完了すれば全員がスタート</p>
+          <h4>対応業務</h4><p>データ入力・リサーチ・資料作成</p>
+          <h4>こんな人</h4><p>未経験だけど挑戦したい。まずはビジネスの基礎を身につけたい。</p>
+        </div>
+      </div>
+      <div class="tier-card reveal">
+        <div class="tier-head t2-bg"><h3>Tier 2</h3><div class="tier-pay">¥1,800〜2,500/h</div></div>
+        <div class="tier-body">
+          <h4>昇格条件</h4><p>案件3件以上完了<br>Sparqスコア 3.5以上<br>改善行動スコア 3.0以上</p>
+          <h4>対応業務</h4><p>企業対応・展示会・SNS運用</p>
+          <h4>こんな人</h4><p>基礎を身につけ、もっと挑戦的な業務に取り組みたい。</p>
+        </div>
+      </div>
+      <div class="tier-card reveal">
+        <div class="tier-head t3-bg"><h3>Tier 3</h3><div class="tier-pay">¥3,000〜5,000/h</div></div>
+        <div class="tier-body">
+          <h4>昇格条件</h4><p>案件8件以上完了<br>Sparqスコア 4.0以上<br>専門スキル認定（AI等）</p>
+          <h4>対応業務</h4><p>AI活用支援・高度な専門業務</p>
+          <h4>こんな人</h4><p>専門性を武器に、企業から「あなたがいないと困る」と言われたい。</p>
+        </div>
+      </div>
+    </div>
+    <div class="tier-key reveal">ポイント：スキルが低くても、改善行動を重ねていればTier 2に昇格できます。</div>
+  </div>
+</section>
+
+<!-- PDCA -->
+<section class="pdca">
+  <div class="inner">
+    <div class="label reveal">Growth Cycle</div>
+    <h2 class="title reveal">成長のPDCAサイクル</h2>
+    <p class="desc desc-dark reveal">4つのタイミングで振り返りと成長のチェックポイントを設けています。</p>
+    <div class="pdca-timeline">
+      <div class="pdca-card reveal"><span class="pdca-period">毎日</span><span class="pdca-icon">📋</span><h3>日報で振り返り</h3><p>うまくいったこと、改善したいこと、明日意識することを毎日書く</p></div>
+      <div class="pdca-card reveal"><span class="pdca-period">案件完了時</span><span class="pdca-icon">⭐</span><h3>企業評価</h3><p>クライアントが5項目で評価。リアルなフィードバックが届く</p></div>
+      <div class="pdca-card reveal"><span class="pdca-period">月1回</span><span class="pdca-icon">💬</span><h3>PMと1on1</h3><p>15分の振り返り。スコア確認・翌月のDo設定・成長の実感</p></div>
+      <div class="pdca-card reveal"><span class="pdca-period">3ヶ月ごと</span><span class="pdca-icon">🏆</span><h3>Tier判定</h3><p>四半期レビュー。Willの見直し・Tier昇格判定・MVP表彰</p></div>
+    </div>
+    <div class="daily-format reveal">
+      <h3>📝 日報フォーマット</h3>
+      <div class="daily-item"><div class="daily-num">01</div><div><h4>今日やったこと</h4><p>業務内容と稼働時間</p></div></div>
+      <div class="daily-item"><div class="daily-num">02</div><div><h4>うまくいったこと</h4><p>成果、工夫したこと</p></div></div>
+      <div class="daily-item"><div class="daily-num">03</div><div><h4>改善したいこと</h4><p>うまくいかなかったこと、気づき</p></div></div>
+      <div class="daily-item"><div class="daily-num">04</div><div><h4>明日意識すること</h4><p>改善アクション、次の一歩</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices">
+  <div class="inner">
+    <div class="label reveal">Voice</div>
+    <h2 class="title reveal">先輩たちの声</h2>
+    <div class="voice-grid">
+      <div class="voice-card reveal">
+        <p class="voice-text">企業への電話は最初怖かったけど、PMが横についてくれて2週間で慣れました。毎日の日報で自分の成長が見えるのが嬉しい。就活の面接で「企業に電話で営業してた」と言ったら、面接官の目の色が変わりました。</p>
+        <div class="voice-meta"><div class="voice-avatar">K</div><div class="voice-info"><strong>K.S さん</strong>慶應義塾大学 商学部 3年<div class="voice-score">Tier 2 / スコア 4.1</div></div></div>
+      </div>
+      <div class="voice-card reveal">
+        <p class="voice-text">AI導入支援で企業の方から「あなたがいないと困る」と言われた時は嬉しかったです。Sparqスコアが可視化されるので、改善ポイントが明確。Tier 3になってからは時給5,000円。普通のバイトには戻れません。</p>
+        <div class="voice-meta"><div class="voice-avatar">M</div><div class="voice-info"><strong>M.T さん</strong>東京大学 工学部 修士1年<div class="voice-score">Tier 3 / スコア 4.5</div></div></div>
+      </div>
+      <div class="voice-card reveal">
+        <p class="voice-text">展示会で3日間で200枚の名刺を集めました。PMとの月次1on1で「声のかけ方を工夫した結果」と振り返れたのが大きい。改善行動スコアが上がるたびに、自分の成長を実感できます。</p>
+        <div class="voice-meta"><div class="voice-avatar">A</div><div class="voice-info"><strong>A.Y さん</strong>早稲田大学 社会科学部 2年<div class="voice-score">Tier 2 / スコア 3.9</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="inner">
+    <div class="label reveal">FAQ</div>
+    <h2 class="title reveal">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal"><div class="faq-q">未経験でも大丈夫ですか？</div><p class="faq-a">はい。研修プログラムがあり、専任PMが伴走します。Tier 1の業務は未経験を前提に設計されています。</p></div>
+      <div class="faq-item reveal"><div class="faq-q">学業との両立はできますか？</div><p class="faq-a">週10時間からOKです。テスト期間のお休みも相談可能。授業を最優先にしてください。</p></div>
+      <div class="faq-item reveal"><div class="faq-q">報酬の支払い方法は？</div><p class="faq-a">業務委託としてお支払い。月末締め・翌月15日払い。確定申告の相談もサポートします。</p></div>
+      <div class="faq-item reveal"><div class="faq-q">どんな学生が活躍していますか？</div><p class="faq-a">「ビジネスの現場を知りたい」「就活で語れる経験がほしい」「高い報酬で効率よく稼ぎたい」という学生が多いです。学部・学年は問いません。</p></div>
+      <div class="faq-item reveal"><div class="faq-q">Sparqスコアはどうやって上がりますか？</div><p class="faq-a">日報での振り返り習慣、企業からの評価、PMとの1on1での改善行動が反映されます。スキルよりスタンスを重視する評価なので、「まだうまくできないけど頑張っている」人ほどスコアが伸びます。</p></div>
+      <div class="faq-item reveal"><div class="faq-q">Tier 3になるにはどうすればいいですか？</div><p class="faq-a">AIスキル等の専門認定が必要です。Sparqの育成プログラムでAIスキルを習得できるので、入った後にチャレンジできます。</p></div>
+      <div class="faq-item reveal"><div class="faq-q">就活にどう活きますか？</div><p class="faq-a">Sparqスコアと企業評価実績がそのままポートフォリオになります。「8案件遂行、クライアント評価平均4.2/5.0」は、どんなESより説得力のあるガクチカです。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="apply">
+  <div class="cta-inner">
+    <div class="cta-logo reveal">Sparq</div>
+    <h2 class="reveal">火花を、起こそう。</h2>
+    <p class="reveal">あなたの可能性は、教室の中だけじゃ測れない。<br>ビジネスの現場で、自分でも知らなかった力を見つけよう。</p>
+    <a href="https://forms.gle/XXXXX" class="cta-btn reveal">エントリーフォームへ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p class="cta-note reveal">30秒で完了・選考料なし</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sparq</div>
+    <div class="footer-links"><a href="#">運営会社（Locare Inc.）</a><a href="#">プライバシーポリシー</a><a href="#">企業の方はこちら</a></div>
+    <p class="footer-copy">&copy; 2026 Locare Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
