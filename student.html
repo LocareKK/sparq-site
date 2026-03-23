@@ -217,8 +217,9 @@ footer{background:#12152D;padding:2.5rem 2rem;text-align:center}
   .career-flow,.pdca-timeline{grid-template-columns:1fr}
 }
 
-.reveal{opacity:0;transform:translateY(24px);transition:all .7s ease-out}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal{opacity:1;transform:translateY(0);transition:all .7s ease-out}
+.js-ready .reveal{opacity:0;transform:translateY(24px)}
+.js-ready .reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -459,10 +460,21 @@ footer{background:#12152D;padding:2.5rem 2rem;text-align:center}
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.addEventListener('DOMContentLoaded', function() {
+  document.documentElement.classList.add('js-ready');
+  
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+});
 </script>
 </body>
 </html>
