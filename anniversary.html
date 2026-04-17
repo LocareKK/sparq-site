@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locare 創業14周年 — ありがとうございます</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A1F3D;
+  --deep-blue: #2B3170;
+  --accent: #FF6B35;
+  --accent-light: #FF8F66;
+  --accent-glow: rgba(255, 107, 53, 0.12);
+  --white: #FFFFFF;
+  --off-white: #F8F9FC;
+  --light-gray: #E8EBF2;
+  --mid-gray: #8892A8;
+  --dark-text: #1A1F3D;
+  --body-text: #3D4460;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--dark-text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  border-radius: 50%;
+  animation: float 14s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(43, 49, 112, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 40px); }
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.hero-year {
+  font-size: clamp(100px, 20vw, 220px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -6px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+  position: absolute;
+  right: -0.02em;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+  z-index: 0;
+}
+
+.hero-heading {
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -3px;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-heading em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 2.5rem;
+  max-width: 480px;
+  position: relative;
+  z-index: 1;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  animation: bounce 2.4s ease-in-out infinite;
+}
+
+.scroll-hint span {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.scroll-hint svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--white);
+  fill: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ===== THANK YOU SECTION ===== */
+.section {
+  padding: 8rem 2rem;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--mid-gray);
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.thanks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.thanks-heading {
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -2px;
+}
+
+.thanks-heading em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.thanks-body {
+  padding-top: 0.5rem;
+}
+
+.thanks-body p {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--body-text);
+  margin-bottom: 1.5rem;
+}
+
+.thanks-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== NUMBERS ===== */
+.numbers {
+  padding: 8rem 2rem;
+  background: var(--off-white);
+}
+
+.numbers-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-top: 4rem;
+}
+
+.number-card {
+  background: var(--white);
+  padding: 3rem 2.5rem;
+  position: relative;
+}
+
+.number-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2.5rem;
+  right: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.number-card:hover::after {
+  transform: scaleX(1);
+}
+
+.number-val {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--navy);
+}
+
+.number-val span {
+  font-size: 0.45em;
+  font-weight: 400;
+  letter-spacing: 0;
+  vertical-align: middle;
+  margin-left: 4px;
+  color: var(--accent);
+}
+
+.number-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--mid-gray);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+/* ===== BRIDGE SECTION ===== */
+.bridge {
+  padding: 10rem 2rem;
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.bridge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 65%);
+  border-radius: 50%;
+}
+
+.bridge-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.bridge-inner .section-label {
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2rem;
+}
+
+.bridge-quote {
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -1.5px;
+  margin-bottom: 3rem;
+}
+
+.bridge-quote em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.bridge-body {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 660px;
+  margin: 0 auto 4rem;
+}
+
+.bridge-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.4);
+  padding-bottom: 4px;
+  transition: border-color 0.3s;
+}
+
+.bridge-cta:hover {
+  border-color: var(--accent);
+}
+
+.bridge-cta svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  transition: transform 0.3s;
+}
+
+.bridge-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ===== MESSAGE ===== */
+.message {
+  padding: 8rem 2rem;
+}
+
+.message-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.message-meta {
+  position: sticky;
+  top: 3rem;
+}
+
+.message-meta .section-label {
+  margin-bottom: 1.5rem;
+}
+
+.message-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+
+.message-title {
+  font-size: 13px;
+  color: var(--mid-gray);
+  font-weight: 300;
+}
+
+.message-text p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: var(--body-text);
+  margin-bottom: 1.75rem;
+}
+
+.message-text p:last-child {
+  margin-bottom: 0;
+}
+
+.message-text strong {
+  font-weight: 700;
+  color: var(--dark-text);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--light-gray);
+}
+
+footer .footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .footer-logo {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--dark-text);
+}
+
+footer .footer-copy {
+  font-size: 12px;
+  color: var(--mid-gray);
+  font-weight: 300;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-year { display: none; }
+  .hero-heading { letter-spacing: -1.5px; }
+
+  .thanks-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .numbers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .message-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .message-meta {
+    position: static;
+  }
+
+  footer .footer-inner {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+/* ===== FADE IN ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-year" aria-hidden="true">14</div>
+  <div class="hero-inner">
+    <p class="label">Locare Inc. — 2012 → 2026</p>
+    <h1 class="hero-heading">
+      14年間、<br>
+      <em>ありがとう</em><br>
+      ございます。
+    </h1>
+    <p class="hero-sub">
+      創業から今日まで、私たちを支えてくださったすべての方へ、
+      心からの感謝をお伝えします。
+    </p>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" stroke-width="1.5">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- THANK YOU -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label fade-in">14 Years of Gratitude</p>
+    <div class="thanks-grid">
+      <div class="fade-in">
+        <h2 class="thanks-heading">
+          人の可能性を、<br>
+          信じ続けた<br>
+          <em>14年</em>。
+        </h2>
+      </div>
+      <div class="thanks-body fade-in">
+        <p>
+          2012年の創業以来、Locareは「働くこと」の可能性を広げることを使命として歩んできました。
+          企業と個人の間に立ち、双方にとって本当の意味での「良い出会い」をつくること——
+          その一点に、チーム全員が情熱を注いできました。
+        </p>
+        <p>
+          クライアントの皆様、パートナーの皆様、そして一緒に働いてきたすべてのメンバーへ。
+          あなたたちの信頼と情熱があったから、Locareは今日を迎えることができました。
+          本当に、ありがとうございます。
+        </p>
+        <p>
+          14年という時間は、私たちに多くのことを教えてくれました。
+          市場は変わり、技術は進化し、働き方そのものが大きく塗り替わりました。
+          それでも変わらなかったのは、「人が輝ける場所をつくる」という原点です。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="numbers-inner">
+    <p class="section-label fade-in">Locare in Numbers</p>
+    <div class="numbers-grid">
+      <div class="number-card fade-in">
+        <div class="number-val">14<span>年</span></div>
+        <div class="number-desc">創業から今日まで、<br>一歩一歩積み重ねた歩み</div>
+      </div>
+      <div class="number-card fade-in">
+        <div class="number-val">∞<span></span></div>
+        <div class="number-desc">支えてくださった方々との<br>かけがえのない縁</div>
+      </div>
+      <div class="number-card fade-in">
+        <div class="number-val">1<span>つ</span></div>
+        <div class="number-desc">「人が輝ける場所をつくる」<br>ただひとつの原点</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE TO SPARQ -->
+<section class="bridge">
+  <div class="bridge-inner">
+    <p class="section-label fade-in">Next Chapter</p>
+    <h2 class="bridge-quote fade-in">
+      14年のすべてが、<br>
+      <em>次の一手</em>へと<br>
+      結晶した。
+    </h2>
+    <p class="bridge-body fade-in">
+      Locareが積み上げてきた「人と仕事のマッチング」の知見と信頼——
+      それを、もっと多くの人に、もっとスムーズに届けるために。
+      私たちは今、新しいサービスを動かしています。
+      企業のスポット業務をスマートにつなぐプラットフォーム、
+      <strong style="color: var(--accent);">Sparq</strong> です。
+    </p>
+    <a href="/business" class="bridge-cta fade-in">
+      Sparqについて知る
+      <svg viewBox="0 0 24 24" stroke-width="1.5">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="message">
+  <div class="message-inner">
+    <div class="message-meta fade-in">
+      <p class="section-label">Message</p>
+      <p class="message-name">Locare Inc.</p>
+      <p class="message-title">代表メッセージ</p>
+    </div>
+    <div class="message-text">
+      <p class="fade-in">
+        14周年、本日この日を皆様とともに迎えられることを、
+        チーム一同、心から嬉しく思います。
+      </p>
+      <p class="fade-in">
+        振り返れば、決して平坦ではありませんでした。
+        業界の激変、パンデミック、AIの台頭——
+        時代が私たちに問い続けたのは、「なぜLocareは存在するのか」という問いでした。
+        その問いに向き合うたびに、原点に戻ることができたのは、
+        皆様の期待の声と、現場で共に汗をかいてくれたメンバーたちのおかげです。
+      </p>
+      <p class="fade-in">
+        <strong>働くことは、人生そのものです。</strong>
+        だからこそ、働く場所・働く機会の質に、私たちはとことんこだわってきました。
+        そのこだわりは、これからも変わりません。
+      </p>
+      <p class="fade-in">
+        これからのLocareは、より広く、より深く、人と仕事の可能性を拡張していきます。
+        新しいサービスSparqもその一環です。
+        まだ歩き始めたばかりですが、14年分の知恵と熱量を込めて育てていきます。
+        引き続き、温かく見守っていただけると嬉しいです。
+      </p>
+      <p class="fade-in">
+        これからも、どうぞよろしくお願いします。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">Locare Inc.</span>
+    <span class="footer-copy">© 2012–2026 Locare Inc. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
+document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>

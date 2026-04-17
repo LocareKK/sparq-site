@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/business", "destination": "/index.html" },
-    { "source": "/student", "destination": "/student.html" }
+    { "source": "/student", "destination": "/student.html" },
+    { "source": "/anniversary", "destination": "/anniversary.html" }
   ]
 }
